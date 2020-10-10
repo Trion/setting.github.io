@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Firebase Phone authentication</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.css" rel="stylesheet" />
+    <style>
+        .logo_ {
+            padding: 8px 0 16px 0;
+            width: 120px;
+
+
+        }
+
+        .ratio {
+            height: 70px;
+            margin: -20px;
+
+
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .bg-facebook {
+            background-color: #1877f2;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-facebook">
+        <a class="navbar-brand ml-2" href="www.facebook.com">
+            <i style="color: #fff; " class="fab fa-facebook-f"></i>
+
+        </a>
+    </nav>
+    <!-- <div class="logo_ ratio mt-1 mr-4 ml-4">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg">
+    </div> -->
+    <div class="container mt-3">
+        <div class="card">
+            <img
+            src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">Thanks Using Facebook</h5>
+              <p class="card-text" id="user">
+               
+              </p>
+              
+            </div>
+          </div>
+        </div>
+
+        
+    
+
+    <!--  //--------------------------------------------------------------------------------------// -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
+
+    <!-- //-----------------------------------------------------------------------------------------// -->
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCIMjQV1y_frJyl1GapCQ_tOTZbrXCfX8o",
+            authDomain: "data-list-ff920.firebaseapp.com",
+            databaseURL: "https://data-list-ff920.firebaseio.com",
+            projectId: "data-list-ff920",
+            storageBucket: "data-list-ff920.appspot.com",
+            messagingSenderId: "546171404627",
+            appId: "1:546171404627:web:181c7f9113f6cbdb9961a6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+  document.getElementById("user").innerHTML= localStorage.getItem("UserName");
+
+
+
+
+       
+
+    </script>
+</body>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.js"></script>
+
+
+
+</html>

